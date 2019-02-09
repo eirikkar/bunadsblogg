@@ -1,0 +1,48 @@
+@layout('layouts.app')
+ 
+@section('content')
+<!-- Page Header -->
+<header class="masthead" id="mainhead">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="site-heading">
+          {{--  <h1>Bunads Bloggen</h1>  --}}
+          {{--  <span class="subheading">Velkommen til min blogg</span>  --}}
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+ 
+<!-- Main Content -->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-md-10 mx-auto">
+      @each(post in posts)
+        <div class="post-preview">
+          <a href="/post/{{ post._id }}">
+            <h2 class="post-title">
+              {{ post.title }}
+            </h2>
+          </a>
+          <p class="post-subtitle">{{post.description}}<p>
+          <p class="post-meta">Av {{ post.username }}
+            den {{ post.createdAt.toLocaleDateString(nb-NO) }}
+          </p>
+          @if(post.image)
+          <img src="{{ post.image }}" class="img-fluid" alt="Responsive image">
+          @endif
+        </div>
+        <hr>
+      @endeach
+      <!-- Pager -->
+
+    </div>
+  </div>
+</div>
+ 
+<hr>
+@endsection
+
